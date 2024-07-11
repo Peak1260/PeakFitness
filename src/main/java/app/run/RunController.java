@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/runs")
@@ -35,14 +36,14 @@ public class RunController {
     Run findById(@PathVariable Integer id) {
         Optional<Run> run = runRepository.findById(id);
         if (run.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Run not found.");
+            throw new RunNotFoundException();
         }
         return run.get();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    void create(@RequestBody Run run) {
+    void create(@Valid @RequestBody Run run) {
         runRepository.create(run);
     }
 

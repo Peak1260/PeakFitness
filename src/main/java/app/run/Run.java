@@ -1,12 +1,15 @@
 package app.run;
 
-import java.time.LocalDateTime;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
 
 public record Run(
     Integer id,
-    String title, 
-    LocalDateTime startedOn,
-    LocalDateTime completedOn, 
+    @NotEmpty
+    String title,
+    @Positive 
+    Integer time,
+    @Positive
     Integer miles,
     Location location
 ) {}
