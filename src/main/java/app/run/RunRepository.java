@@ -1,47 +1,23 @@
 package app.run;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Repository;
+public interface RunRepository {
 
-import jakarta.annotation.PostConstruct;
+    List<Run> findAll();
 
-@Repository
-public class RunRepository {
-    private List<Run> runs = new ArrayList<>();
+    Optional<Run> findById(Integer id);
 
-    List<Run> findAll() {
-        return runs;
-    }
+    void create(Run run);
 
-    Optional<Run> findById(Integer id) {
-        return runs.stream()
-                .filter(run -> run.id() == id)
-                .findFirst();
-    }
+    void update(Run run, Integer id);
 
-    void create(Run run) {
-        runs.add(run);
-    }
+    void delete(Integer id);
 
-    void update(Run run, Integer id) {
-        Optional<Run> existingRun = findById(id);
-        if (existingRun.isPresent()) {
-            runs.set(runs.indexOf(existingRun.get()), run);
-        }
-    }
+    int count();
 
-    void delete(Integer id) {
-        runs.removeIf(run -> run.id().equals(id));
-    }
+    void saveAll(List<Run> runs);
 
-    @PostConstruct
-    private void init() {
-        runs.add(new Run(1, "First Run", 30, 4,
-                Location.OUTDOOR));
-        runs.add(new Run(2, "Second Run", 60, 6,
-                Location.INDOOR));
-    }
+    List<Run> findByLocation(String location);
 }

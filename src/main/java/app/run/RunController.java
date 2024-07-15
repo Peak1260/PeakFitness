@@ -11,38 +11,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/runs")
-public class RunController {
+class RunController {
 
-    private final RunRepository runRepository;
+    private final JdbcRunRepository runRepository;
 
-    public RunController(RunRepository runRepository) {
+    RunController(JdbcRunRepository runRepository) {
         this.runRepository = runRepository;
     }
 
-    @GetMapping("")
+    @GetMapping
     List<Run> findAll() {
-        System.out.println("Fetching all runs...");
         return runRepository.findAll();
     }
 
     @GetMapping("/{id}")
     Run findById(@PathVariable Integer id) {
         Optional<Run> run = runRepository.findById(id);
-        if (run.isEmpty()) {
-            throw new RunNotFoundException();
+        if(run.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Run not found.");
         }
         return run.get();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("")
+    @PostMapping
     void create(@Valid @RequestBody Run run) {
         runRepository.create(run);
     }
@@ -50,12 +51,16 @@ public class RunController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
     void update(@Valid @RequestBody Run run, @PathVariable Integer id) {
-        runRepository.update(run, id);
+        runRepository.update(run,id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     void delete(@PathVariable Integer id) {
         runRepository.delete(id);
+    }
+
+    List<Run> findByLocation(@RequestParam String location) {
+        return runRepository.findByLocation(location);
     }
 }
