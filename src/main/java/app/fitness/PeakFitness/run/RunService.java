@@ -1,4 +1,4 @@
-package app.run;
+package app.fitness.PeakFitness.run;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class RunService {
         return runRepository.findAll();
     }
 
-    public Optional<Run> getRunById(String id) {
+    public Optional<Run> getRunById(Integer id) {
         return runRepository.findById(id);
     }
 
@@ -24,7 +24,7 @@ public class RunService {
         return runRepository.save(run);
     }
 
-    public void deleteRun(String id) {
+    public void deleteRun(Integer id) {
         runRepository.deleteById(id);
     }
 }
