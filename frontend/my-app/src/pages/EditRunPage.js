@@ -3,8 +3,8 @@ import RunForm from '../components/RunForm';
 
 const EditRunPage = () => {
   return (
-    <div>
-      <h1>Edit Run</h1>
+    <div className="container mt-5">
+      <h1 className="mb-4">Update Run Info</h1>
       <RunForm />
     </div>
   );

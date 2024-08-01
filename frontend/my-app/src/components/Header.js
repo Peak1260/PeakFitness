@@ -4,7 +4,6 @@ import { Link, useLocation } from 'react-router-dom';
 const Header = () => {
   const location = useLocation();
   
-  // Define titles based on the current route
   const getTitle = () => {
     switch (location.pathname) {
       case '/add-run':
@@ -17,13 +16,20 @@ const Header = () => {
   };
 
   return (
-    <header className="Header">
-      <h1>{getTitle()}</h1>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/add-run">Add Run</Link>
-        <Link to="/edit-run">Edit Run</Link>
-      </nav>
+    <header className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container">
+        <Link className="navbar-brand" to="/">{getTitle()}</Link>
+        <nav className="collapse navbar-collapse">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link className="nav-link" to="/">Home</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/add-run">Add Run</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 };

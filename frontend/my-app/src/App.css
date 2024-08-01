@@ -2,28 +2,6 @@
   text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  padding: 20px;
-  color: white;
-}
-
-.Header {
-  background: #282c34;
-  padding: 10px;
-  color: white;
-}
-
-.Header nav a {
-  color: #61dafb;
-  margin: 0 15px;
-  text-decoration: none;
-}
-
-.Header nav a:hover {
-  text-decoration: underline;
-}
-
 form {
   display: flex;
   flex-direction: column;

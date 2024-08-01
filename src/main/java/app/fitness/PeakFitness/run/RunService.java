@@ -16,7 +16,7 @@ public class RunService {
         return runRepository.findAll();
     }
 
-    public Optional<Run> getRunById(Integer id) {
+    public Optional<Run> getRunById(String id) {
         return runRepository.findById(id);
     }
 
@@ -24,7 +24,7 @@ public class RunService {
         return runRepository.save(run);
     }
 
-    public void deleteRun(Integer id) {
+    public void deleteRun(String id) {
         runRepository.deleteById(id);
     }
 }

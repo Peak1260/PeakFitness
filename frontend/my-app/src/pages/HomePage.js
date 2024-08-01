@@ -3,8 +3,8 @@ import RunList from '../components/RunList';
 
 const Home = () => {
   return (
-    <div>
-      <h1>Welcome to the Fitness Tracker</h1>
+    <div className="container mt-5">
+      <h1 className="mb-4">Welcome to the Fitness Tracker</h1>
       <RunList />
     </div>
   );
