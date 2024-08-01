@@ -20,3 +20,4 @@ This is a full-stack fitness tracker web application that allows users to log th
 ![Get All Runs](GetAllRun.png)
 ![Update Run Info](UpdateRunInfo.png)
 ![Create New Run](CreateNewRun.png)
+![PeakFitnessDB](MongoDB.png)
