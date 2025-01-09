@@ -10,6 +10,6 @@ public class MongoConfig {
 
     @Bean
     public MongoTemplate mongoTemplate() {
-        return new MongoTemplate(MongoClients.create("mongodb://192.168.1.67:27017/fitness"), "fitness");
+        return new MongoTemplate(MongoClients.create("mongodb+srv://Peak1260:TLpeak12345@peakfitness.i5blp.mongodb.net/fitness"), "fitness");
     }
 }
